@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balls killer</title>
+  <link href="./style.css" rel="stylesheet" type="text/css">
+  <link type="Image/x-icon" href="./favicon.ico" rel="icon">
+</head>
+
+<body>
+  <div class="score-wrap">
+    <span>Score: </span>
+    <span id="scoreEl">0</span>
+  </div>
+
+  <div class="popup-wrap" id="modalEl">
+    <p class="score" id="bigScoreEl">0</p>
+    <p class="score-text">points</p>
+    <button class="button" id="startGameBtn">start game</button>
+  </div>
+
+  <canvas></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+    integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>
