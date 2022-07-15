@@ -111,6 +111,29 @@ let enemies = [];
 let particles = [];
 let score = 0;
 
+const iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+const eventType = iOS ? 'touchstart' : 'click';
+
+const createVelocity = (event) => {
+  const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
+
+  const velocity = {
+    x: Math.cos(angle) * 5,
+    y: Math.sin(angle) * 5,
+  };
+
+  projectiles.push(
+    new Projectile(
+      canvas.width / 2,
+      canvas.height / 2,
+      5,
+      'white',
+      velocity
+    )
+  );
+};
+
+
 function init() {
   player = new Player(x, y, 10, 'white');
   projectiles = [];
@@ -118,6 +141,8 @@ function init() {
   particles = [];
   score = 0;
   scoreEl.innerHTML = score;
+  removeEventListener(eventType, createVelocity);
+  addEventListener(eventType, createVelocity);
 }
 
 function spawnEnemies() {
@@ -236,26 +261,8 @@ function animate() {
   });
 }
 
-addEventListener('click', (event) => {
-  const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
-
-  const velocity = {
-    x: Math.cos(angle) * 5,
-    y: Math.sin(angle) * 5,
-  };
-
-  projectiles.push(
-    new Projectile(
-      canvas.width / 2,
-      canvas.height / 2,
-      5,
-      'white',
-      velocity
-    )
-  );
-});
-
-startGameBtn.addEventListener('click', () => {
+startGameBtn.addEventListener(eventType, (event) => {
+  event.stopPropagation();
   init();
   animate();
   spawnEnemies();
